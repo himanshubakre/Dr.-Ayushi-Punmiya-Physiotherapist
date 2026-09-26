@@ -246,13 +246,30 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
 .trust-strip .star { color: var(--gold-400); }
 
 .hero-visual-frame { position: relative; }
-.hero-illustration { border-radius: var(--radius-lg); box-shadow: var(--shadow-card); }
-.visual-caption {
-  margin-top: 10px;
-  font-size: 0.78rem;
-  color: var(--ink-soft);
-  text-align: center;
+.hero-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 900 / 1040;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
 }
+.hero-rating-badge {
+  position: absolute;
+  left: -18px;
+  bottom: -18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border-radius: 999px;
+  padding: 12px 18px;
+  box-shadow: var(--shadow-card);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+.hero-rating-badge .star { color: var(--gold-400); font-size: 1.05rem; }
+.hero-rating-badge strong { color: var(--teal-700); }
 
 /* ---------- Sections ---------- */
 .section { padding: 72px 0; }
@@ -265,11 +282,25 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
 /* About */
 .about-grid {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 48px;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 52px;
   align-items: start;
 }
-.about-intro h2 { font-size: clamp(1.7rem, 2.8vw, 2.2rem); max-width: 14ch; }
+.about-photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 480 / 560;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+.about-content h2 { font-size: clamp(1.7rem, 2.8vw, 2.2rem); max-width: 16ch; }
+.about-title {
+  font-weight: 600;
+  color: var(--teal-600);
+  font-size: 0.98rem;
+  margin-bottom: 14px;
+}
 
 .credential-list {
   list-style: none;
@@ -323,6 +354,45 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
 }
 .care-card p { font-size: 0.94rem; margin: 0; }
 
+.care-card.featured {
+  background: var(--teal-050);
+  border-color: transparent;
+}
+.care-card.featured .care-icon { background: #fff; }
+
+/* Care Designed Around Your Recovery — visual + focus grid */
+.care-visual-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 24px;
+  margin-top: 8px;
+}
+.focus-item {
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.focus-item h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.focus-item p { font-size: 0.92rem; margin: 0; }
+.care-visual-photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 700 / 820;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
 /* Why choose */
 .why-grid { display: block; }
 .why-list {
@@ -330,8 +400,53 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
+.why-list.five-up { grid-template-columns: repeat(3, 1fr); }
 .why-item h3 { font-size: 1.1rem; }
 .why-item p { font-size: 0.96rem; }
+
+/* What to Expect — step timeline */
+.process-list {
+  display: flex;
+  gap: 32px;
+  margin-top: 8px;
+  position: relative;
+}
+.process-step {
+  flex: 1;
+  padding-top: 20px;
+  border-top: 2px solid var(--line);
+  position: relative;
+}
+.process-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--gold-400);
+  margin-bottom: 10px;
+}
+.process-step h3 { font-size: 1.08rem; margin-bottom: 6px; }
+.process-step p { font-size: 0.94rem; margin: 0; }
+
+/* Local trust band */
+.local-band {
+  background: var(--teal-050);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 26px 0;
+}
+.local-band-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+}
+.local-band-title {
+  font-family: var(--font-display);
+  color: var(--teal-700);
+  font-size: 1.05rem;
+  margin: 0;
+}
+.local-band-inner p:last-child { margin: 0; font-size: 0.92rem; }
 
 /* Reviews */
 .review-grid {
@@ -346,17 +461,24 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
   border-radius: var(--radius-md);
   padding: 26px;
 }
-.review-card p {
-  font-family: var(--font-display);
-  font-size: 1.08rem;
-  color: var(--teal-700);
-  margin-bottom: 12px;
+.review-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--teal-050);
+  color: var(--teal-600);
+  margin-bottom: 14px;
 }
-.review-card cite {
-  font-style: normal;
-  font-size: 0.82rem;
-  color: var(--ink-soft);
+.review-card h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 6px;
 }
+.review-card p { font-size: 0.94rem; margin: 0; }
 .review-note {
   margin-top: 22px;
   font-size: 0.82rem;
@@ -372,19 +494,18 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
 }
 .location-name { font-family: var(--font-display); font-size: 1.2rem; color: var(--teal-700); margin-bottom: 4px; }
 address { font-style: normal; margin-bottom: 24px; }
-.map-placeholder {
-  background: var(--teal-050);
-  border: 1px dashed var(--teal-500);
+.location-map-frame {
   border-radius: var(--radius-md);
-  min-height: 260px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: var(--teal-600);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  aspect-ratio: 4 / 3;
 }
-.map-placeholder p { margin: 0; font-size: 0.9rem; color: var(--teal-600); }
+.location-map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
 
 /* Appointment CTA */
 .appointment-section {
@@ -452,11 +573,19 @@ address { font-style: normal; margin-bottom: 24px; }
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-visual { order: -1; }
+  .hero-rating-badge { left: 14px; bottom: -16px; }
   .about-grid { grid-template-columns: 1fr; }
+  .about-photo img { max-width: 340px; margin: 0 auto; }
+  .care-visual-grid { grid-template-columns: 1fr; }
+  .care-visual-photo { order: -1; }
+  .care-visual-photo img { max-width: 420px; margin: 0 auto; }
+  .focus-grid { grid-template-columns: 1fr; }
   .care-grid { grid-template-columns: repeat(2, 1fr); }
-  .why-list { grid-template-columns: 1fr; gap: 22px; }
+  .why-list, .why-list.five-up { grid-template-columns: 1fr 1fr; gap: 22px; }
+  .process-list { flex-direction: column; gap: 24px; }
   .review-grid { grid-template-columns: 1fr; }
   .location-grid { grid-template-columns: 1fr; }
+  .location-map-frame { aspect-ratio: 16 / 10; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 
@@ -480,7 +609,9 @@ address { font-style: normal; margin-bottom: 24px; }
   .header-actions .btn-small { display: none; }
 
   .care-grid { grid-template-columns: 1fr; }
+  .why-list, .why-list.five-up { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 22px; }
+  .local-band-inner { flex-direction: column; gap: 2px; }
 
   .mobile-sticky-cta { display: flex; }
   body { padding-bottom: 62px; }
@@ -489,4 +620,5 @@ address { font-style: normal; margin-bottom: 24px; }
 
 @media (max-width: 480px) {
   .credential-list { grid-template-columns: 1fr; }
+  .hero-rating-badge { position: static; margin-top: 14px; display: inline-flex; }
 }
